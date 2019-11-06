@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">NotesApplication</string>
+    <string name="app_inputUser">Ingrese usuario</string>
+    <string name="app_inputPass">Ingrese contraseña</string>
+    <string name="app_buttonLogin">INGRESAR</string>
+    <string name="app_buttonRegister">REGISTRAR</string>
+    <string name="fullname">Nombre completo</string>
+    <string name="email">Correo electrónico</string>
+    <string name="password">Contraseña</string>
+    <string name="name">Nombre de usuario</string>
+    <string name="app_description">Contenido</string>
+    <string name="app_NoteTitle">Titulo</string>
+    <string name="title_text">Title</string>
+    <string name="description_text">Description</string>
+</resources>

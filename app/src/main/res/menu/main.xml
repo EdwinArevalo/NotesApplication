@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/action_home"
+        android:orderInCategory="100"
+        app:showAsAction="ifRoom"
+        android:title="Inicio" />
+
+    <item
+    android:id="@+id/action_favorito"
+    android:orderInCategory="101"
+    android:title="Favoritos"
+    app:showAsAction="ifRoom" />
+
+    <item
+        android:id="@+id/action_archivados"
+        android:orderInCategory="101"
+        android:title="Archivados"
+        app:showAsAction="ifRoom" />
+
+    <item
+        android:id="@+id/action_close"
+        android:orderInCategory="101"
+        android:title="Cerrar Sesion"
+        app:showAsAction="ifRoom" />
+</menu>
