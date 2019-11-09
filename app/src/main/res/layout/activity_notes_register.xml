@@ -25,6 +25,7 @@
 
 
     <Button
+        android:layout_marginTop="30dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         style="@style/TextAppearance.AppCompat.Widget.Button.Borderless.Colored"

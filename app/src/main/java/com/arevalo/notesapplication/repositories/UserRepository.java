@@ -17,4 +17,24 @@ public class UserRepository {
         SugarRecord.save(user);
     }
 
+    public static User Login(String username, String password){
+        List<User> users = SugarRecord.listAll(User.class);
+        for (User u: users){
+            if(u.getName().equals(username) && u.getPassword().equals(password)){
+                return u;
+            }
+        }
+        return null;
+    }
+
+    public static  User findByUsername(String username){
+        List<User> users = SugarRecord.listAll(User.class);
+        for (User u: users){
+            if(u.getName().equals(username)){
+                return u;
+            }
+        }
+        return null;
+    }
+
 }
