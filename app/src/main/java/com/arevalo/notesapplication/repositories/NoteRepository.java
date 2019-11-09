@@ -8,8 +8,19 @@ import java.util.List;
 public class NoteRepository {
 
     public static List<Note> list(){
-        List<Note> notes = SugarRecord.listAll(Note.class);
-        return notes;
+        List<Note> notesBd = SugarRecord.listAll(Note.class);
+        /*List<Note> notes = null;
+        for (Note n: notesBd) {
+            if (n.getEstado() == 0){
+                notes.add(n);
+            }
+        }
+        if(notes == null){
+            return notesBd;
+        }
+        return notes;*/
+
+        return notesBd;
     }
 
     public static List<Note> listFavorites(){
@@ -37,5 +48,5 @@ public class NoteRepository {
     public static void create(String title,String description, long usuarioId){
         Note note = new Note(title,description,usuarioId);
         SugarRecord.save(note);
-    }
+}
 }

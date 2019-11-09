@@ -10,6 +10,7 @@ import android.widget.Toast;
 import com.arevalo.notesapplication.R;
 import com.arevalo.notesapplication.models.Note;
 import com.arevalo.notesapplication.repositories.NoteRepository;
+import com.orm.SugarRecord;
 
 import java.util.List;
 
@@ -60,6 +61,7 @@ public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.ViewHolder> {
             @Override
             public void onClick(View v) {
                 notes.get(position).setEstado(2);
+                SugarRecord.save(notes.get(position));
                 notes.remove(position);
                 notifyItemRemoved(position);
                 notifyItemRangeChanged(position, getItemCount());
@@ -72,6 +74,7 @@ public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.ViewHolder> {
             @Override
             public void onClick(View v) {
                 notes.get(position).setEstado(1);
+                SugarRecord.save(notes.get(position));
             }
         });
 

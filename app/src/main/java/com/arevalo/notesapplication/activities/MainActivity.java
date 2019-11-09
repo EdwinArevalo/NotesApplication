@@ -11,6 +11,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.arevalo.notesapplication.R;
+import com.arevalo.notesapplication.models.Note;
 import com.arevalo.notesapplication.models.User;
 import com.arevalo.notesapplication.repositories.UserRepository;
 import com.orm.SugarRecord;
@@ -79,4 +80,5 @@ public class MainActivity extends AppCompatActivity {
             inputPass.requestFocus();
         }
     }
+
 }

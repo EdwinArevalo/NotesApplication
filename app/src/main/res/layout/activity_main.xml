@@ -44,5 +44,4 @@
         style="@style/TextAppearance.AppCompat.Widget.Button.Borderless.Colored"
         android:text="@string/app_buttonRegister"/>
 
-
 </LinearLayout>

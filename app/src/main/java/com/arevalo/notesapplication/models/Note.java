@@ -20,6 +20,7 @@ public class Note {
         this.title = title;
         this.description = description;
         this.usuarioId = usuarioId;
+        this.estado = 0;
     }
 
     public Long getId() {
