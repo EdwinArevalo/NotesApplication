@@ -17,6 +17,8 @@ import android.widget.Toast;
 
 import com.arevalo.notesapplication.R;
 import com.arevalo.notesapplication.adapters.NoteAdapter;
+import com.arevalo.notesapplication.fragments.ArchivedsFragment;
+import com.arevalo.notesapplication.fragments.FavoritesFragment;
 import com.arevalo.notesapplication.fragments.HomeFragment;
 import com.arevalo.notesapplication.models.Note;
 import com.arevalo.notesapplication.models.User;
@@ -27,7 +29,7 @@ import java.util.List;
 
 public class IndexActivity extends AppCompatActivity {
     private static final int REGISTER_FORM_REQUEST = 100;
-    private RecyclerView notList;
+
     private TextView fullname;
 
     @Override
@@ -37,8 +39,7 @@ public class IndexActivity extends AppCompatActivity {
 
         fullname = findViewById(R.id.textFullname);
 
-        notList = findViewById(R.id.notesList);
-        notList.setLayoutManager(new LinearLayoutManager(this));
+
 
         SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(this);
         String username = sp.getString("user",null);
@@ -49,24 +50,14 @@ public class IndexActivity extends AppCompatActivity {
             fullname.setText(usuario.getFullname());
         }
 
-        List<Note> notes = NoteRepository.list();
-        notList.setAdapter(new NoteAdapter(notes));
+        //hacer aparecer por defecto el fragmento inicio
+        showHome();
     }
 
     public void callRegisterForm(View view) {
 
         Intent intent = new Intent(this,NotesRegisterActivity.class);
         startActivityForResult(intent,REGISTER_FORM_REQUEST);
-    }
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-
-        NoteAdapter adapter = (NoteAdapter)notList.getAdapter();
-        List<Note> users = NoteRepository.list();
-        adapter.setNotes(users);
-        adapter.notifyDataSetChanged();
     }
 
     @Override
@@ -83,13 +74,12 @@ public class IndexActivity extends AppCompatActivity {
                 break;
 
             case R.id.action_favorito:
-                Toast.makeText(this, "...", Toast.LENGTH_SHORT).show();
-                return true;
+                showFavorites();
+                break;
 
             case R.id.action_archivados:
-                item.setChecked(true);
-                Toast.makeText(this, "...", Toast.LENGTH_SHORT).show();
-                return true;
+                showArchiveds();
+                break;
 
             case R.id.action_close:
                 item.setChecked(true);
@@ -107,6 +97,17 @@ public class IndexActivity extends AppCompatActivity {
         Fragment fragment = new HomeFragment();
         getSupportFragmentManager()
                 .beginTransaction().replace(R.id.content, fragment).commit();
-        Toast.makeText(this, "¡Bienvenido!", Toast.LENGTH_SHORT).show();
+    }
+
+    public void showArchiveds(){
+        Fragment fragment = new ArchivedsFragment();
+        getSupportFragmentManager()
+                .beginTransaction().replace(R.id.content, fragment).commit();
+    }
+
+    public void showFavorites(){
+        Fragment fragment = new FavoritesFragment();
+        getSupportFragmentManager()
+                .beginTransaction().replace(R.id.content, fragment).commit();
     }
 }

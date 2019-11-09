@@ -31,6 +31,29 @@
             android:layout_marginBottom="8dp"
             android:textSize="16sp"
             android:text="@string/description_text"/>
+
+        <LinearLayout
+            android:layout_below="@+id/description_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <Button
+                android:id="@+id/doArchived_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/archivar"
+                style="@style/TextAppearance.AppCompat.Widget.Button.Borderless.Colored"/>
+
+            <Button
+                android:id="@+id/doFavorite_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/favorito"
+                style="@style/TextAppearance.AppCompat.Widget.Button.Borderless.Colored" />
+
+        </LinearLayout>
+
+
     </RelativeLayout>
 
 </android.support.v7.widget.CardView>

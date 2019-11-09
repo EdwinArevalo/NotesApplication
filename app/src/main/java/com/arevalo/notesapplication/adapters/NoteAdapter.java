@@ -1,23 +1,19 @@
 package com.arevalo.notesapplication.adapters;
-import android.content.Context;
-import android.content.SharedPreferences;
-import android.preference.PreferenceManager;
-import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.arevalo.notesapplication.R;
 import com.arevalo.notesapplication.models.Note;
-import com.arevalo.notesapplication.models.User;
-import com.arevalo.notesapplication.repositories.UserRepository;
+import com.arevalo.notesapplication.repositories.NoteRepository;
 
 import java.util.List;
 
 public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.ViewHolder> {
-
 
     private List<Note> notes;
 
@@ -36,11 +32,14 @@ public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.ViewHolder> {
     public class ViewHolder extends RecyclerView.ViewHolder {
         public TextView title;
         public TextView description;
+        public Button doArchived, doFavorite;
 
         public ViewHolder(View itemView) {
             super(itemView);
             title =(TextView) itemView.findViewById(R.id.title_text);
             description = (TextView) itemView.findViewById(R.id.description_text);
+            doArchived = (Button) itemView.findViewById(R.id.doArchived_button);
+            doFavorite = (Button) itemView.findViewById(R.id.doFavorite_button);
         }
     }
 
@@ -51,11 +50,32 @@ public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.ViewHolder> {
     }
 
     @Override
-    public void onBindViewHolder(NoteAdapter.ViewHolder viewHolder, int position) {
+    public void onBindViewHolder(final NoteAdapter.ViewHolder viewHolder, final int position) {
+        final Note note = this.notes.get(position);
+        viewHolder.title.setText(note.getTitle());
+        viewHolder.description.setText(note.getDescription());
 
-        Note user = this.notes.get(position);
-        viewHolder.title.setText(user.getTitle());
-        viewHolder.description.setText(user.getDescription());
+        //seteamos como archivado y ocultamos el item
+        viewHolder.doArchived.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                notes.get(position).setEstado(2);
+                notes.remove(position);
+                notifyItemRemoved(position);
+                notifyItemRangeChanged(position, getItemCount());
+            }
+
+        });
+
+        //seteamos como favorito
+        viewHolder.doFavorite.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                notes.get(position).setEstado(1);
+            }
+        });
+
+
     }
 
     @Override
